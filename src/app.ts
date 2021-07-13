@@ -2,14 +2,12 @@ import express, { Request, Response } from "express";
 
 import * as bookController from "./controllers/bookcontrollers";
 
-// Our Express APP config
+
 const app = express();
 app.set("port", process.env.PORT || 3000);
 
-// API Endpoints
 app.get("/", (req: Request, res: Response) => res.send("hi"))
 
-// API Endpoints
 app.get("/books", bookController.allBooks);
 app.get("/book/:id", bookController.getBook);
 app.post("/book", bookController.addBook);

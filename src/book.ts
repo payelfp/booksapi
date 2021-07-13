@@ -12,7 +12,7 @@ mongoose.connect(uri, (err: any) => {
 
 export interface IBook extends mongoose.Document {
   title: string;
-  author: number;
+  author: string;
 }
 
 export const BookSchema = new mongoose.Schema({
