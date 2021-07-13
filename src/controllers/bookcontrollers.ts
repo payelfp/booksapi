@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Book from "./../book";
+import Book from "../model/book";
 
 export let allBooks = (req: Request, res: Response) => {
   Book.find((err: any, books: any) => {

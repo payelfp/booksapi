@@ -18,18 +18,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const bodyParser = __importStar(require("body-parser"));
-const bookrouter_1 = __importDefault(require("./Router/bookrouter"));
-const app = express_1.default();
-app.set("port", process.env.PORT || 3000);
-app.use(bodyParser.json());
-app.use('/', bookrouter_1.default);
-app.get("/", (req, res) => res.send("hi"));
-const server = app.listen(app.get("port"), () => {
-    console.log("App is running on http://localhost:%d", app.get("port"));
-});
+const express_1 = require("express");
+const bookController = __importStar(require("../controllers/bookcontrollers"));
+const router = express_1.Router();
+router.get("/books", bookController.allBooks);
+router.get("/book/:id", bookController.getBook);
+router.put("/book/:id", bookController.updateBook);
+router.post("/book", bookController.addBook);
+router.delete("/book/:id", bookController.deleteBook);
+exports.default = router;

@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addBook = exports.updateBook = exports.deleteBook = exports.getBook = exports.allBooks = void 0;
-const book_1 = __importDefault(require("./../book"));
+const book_1 = __importDefault(require("../model/book"));
 let allBooks = (req, res) => {
     book_1.default.find((err, books) => {
         if (err) {
