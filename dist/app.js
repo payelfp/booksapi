@@ -23,17 +23,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const bodyParser = __importStar(require("body-parser"));
 const bookController = __importStar(require("./controllers/bookcontrollers"));
-// Our Express APP config
 const app = express_1.default();
 app.set("port", process.env.PORT || 3000);
-// API Endpoints
+app.use(bodyParser.json());
 app.get("/", (req, res) => res.send("hi"));
-// API Endpoints
 app.get("/books", bookController.allBooks);
 app.get("/book/:id", bookController.getBook);
-app.post("/book", bookController.addBook);
 app.put("/book/:id", bookController.updateBook);
+app.post("/book", bookController.addBook);
 app.delete("/book/:id", bookController.deleteBook);
 const server = app.listen(app.get("port"), () => {
     console.log("App is running on http://localhost:%d", app.get("port"));

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addBook = exports.updateBook = exports.deleteBook = exports.getBook = exports.allBooks = void 0;
 const book_1 = __importDefault(require("./../book"));
 let allBooks = (req, res) => {
-    let books = book_1.default.find((err, books) => {
+    book_1.default.find((err, books) => {
         if (err) {
             res.send("Error!");
         }
@@ -17,7 +17,7 @@ let allBooks = (req, res) => {
 };
 exports.allBooks = allBooks;
 let getBook = (req, res) => {
-    let book = book_1.default.findById(req.params.id, (err, book) => {
+    book_1.default.findById(req.params.id, (err, book) => {
         if (err) {
             res.send(err);
         }
@@ -28,7 +28,7 @@ let getBook = (req, res) => {
 };
 exports.getBook = getBook;
 let deleteBook = (req, res) => {
-    let book = book_1.default.deleteOne({ _id: req.params.id }, (err) => {
+    book_1.default.deleteOne({ _id: req.params.id }, (err) => {
         if (err) {
             res.send(err);
         }
@@ -39,8 +39,8 @@ let deleteBook = (req, res) => {
 };
 exports.deleteBook = deleteBook;
 let updateBook = (req, res) => {
-    console.log(req.body);
-    let book = book_1.default.findByIdAndUpdate(req.params.id, req.body, (err, book) => {
+    // console.log(req.body);
+    book_1.default.findByIdAndUpdate(req.params.id, req.body, (err, book) => {
         if (err) {
             res.send(err);
         }
@@ -51,7 +51,7 @@ let updateBook = (req, res) => {
 };
 exports.updateBook = updateBook;
 let addBook = (req, res) => {
-    var book = new book_1.default(req.body);
+    let book = new book_1.default(req.body);
     book.save((err) => {
         if (err) {
             res.send(err);
